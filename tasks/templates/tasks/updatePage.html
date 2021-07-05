@@ -1,0 +1,135 @@
+{% load bootstrap4 %}
+{% bootstrap_css %}         
+{% bootstrap_javascript jquery='full' %}
+{{ form.media }}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" >
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" ></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" ></script>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Update Page</title>
+    <style>
+        html, body{
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif !important;
+            background: linear-gradient(-45deg, #23a6d2, #23d5ab);
+            background-size: 100%;
+        }
+		.user_card {
+			width: 450px;
+			height: 300px;
+			margin-top: 200px;
+			background: #ffffff;
+			position: relative;
+			display: flex;
+			justify-content: center;
+			flex-direction: column;
+			padding: 10px;
+			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			-webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			-moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			border-radius: 5px;
+
+		}
+
+		.form_container {
+			margin-top: 20px;
+		}
+
+		#form-title{
+			color: #000000;
+		}
+		.login_btn {
+			width: 100%;
+			background: linear-gradient(-45deg, #23a6d2, #23d5ab);
+			color: white !important;
+		}
+		.login_btn:hover {
+			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			outline: 0px !important;
+		}
+		.login_container {
+			padding: 0 2rem;
+		}
+		.input-group-text {
+			background: #fdb644 !important;
+			color: white !important;
+			border: 0 !important;
+            border-radius: 0.25rem 0 0 0.25rem !important;
+            margin-right: 2px;
+		}
+		.input_user,
+		.input_pass:focus {
+			box-shadow: none !important;
+			outline: 0px !important;
+        }
+        .log{
+            color: 1487b4;
+        }
+
+        .register_btn:hover{
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container h-100">
+            <div class="d-flex justify-content-center h-100">
+                <div class="user_card">
+                    <div class="d-flex justify-content-center">
+                        <h3 id="form-title">UPDATE TASK</h3>
+                    </div>
+                    <div class="d-flex justify-content-center form_container">
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            <div class="input-group mb-2">
+                                <div class="input-group-append">
+                                    <span class="input-group-text"><i class="fa fa-user"></i></span>
+                                </div>
+                                {{ form.customer }}
+                            </div>
+                            <div class="input-group mb-2">
+                                <div class="input-group-append">
+                                    <span class="input-group-text"><i class="fa fa-tasks"></i></span>
+                                </div>
+                                {{ form.title }}
+                            </div>
+                            <div class="input-group mb-2">
+                                <div class="input-group-append">
+                                    <span class="input-group-text"><i class="fa fa-check-square"></i></span>
+                                </div>
+                                <span> &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span>
+                                {{ form.status }}
+                            </div>
+                            <div class="input-group mb-2">
+                                <div class="input-group-append">
+                                    <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                </div>
+                                {{ form.duedate }}
+                            </div>
+                            <div class="d-flex justify-content-center mt-4 login_container">
+                                <a class="btn btn-danger btn-sm" href="{% url 'home' %}"> Cancel </a>
+                                <span> &nbsp;</span>
+                                <input class="btn btn-success btn-sm" type="submit" value="Update" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+</body>
+</html>

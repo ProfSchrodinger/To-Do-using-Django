@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" >
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" ></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" ></script>
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <style>
+    html, body{
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif !important;
+            background: linear-gradient(-45deg, #23a6d2, #23d5ab);
+            background-size: 100%;
+        }
+    .center-column{
+    width: 900px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 3px;
+    box-shadow: 6px 2px 30px 0px rgba(0,0,0,0.75);
+    }
+    </style>
+</head>
+<body>
+    <div class="center-column">
+        <br>
+        <div class="todo-list">
+            <nav class="navbar navbar-expand-lg navbar-light">
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+                  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                      <div class="navbar-nav">
+                          TO-DO LIST
+                      </div>
+                  </div>
+                  <div class="navbar-nav ml-auto">
+                      <span class="logout_span"> Hello, {{request.user}} </span>
+                      <span> &nbsp;<a href="{% url 'login' %}" class="logout_span"> Logout </a>
+                      </span>
+                  </div>
+             </nav>
+            <br>
+            <button type="button" class="btn btn-primary btn-lg btn-block"><a href="{% url 'createPage' %}" style="color: #ffffff !important;">Create a Task</a></button>
+            <br>
+            <div class="card card body">
+                <table class="table table-sm inside_table">
+                    <tr>
+                        <th> TASK </th>
+                        <th> STATUS </th>
+                        <th> CUSTOMER </th>
+                        <th> DUE DATE </th>
+                        <th> </th>
+                        <th> </th>
+                    </tr>
+
+                    {% for i in task %}
+                    <tr>
+                        <td> <span>
+                            {% if i.status == True %}
+                            <strike>{{i}}</strike>
+                            {% else %}
+                            <span> {{i}}</span>
+                            {% endif %}</span>
+                        </td>
+                        <td>
+                            {% if i.status == True %}
+                                COMPLETED
+                            {% endif %}
+                        </td>
+                        <td> <span> {{i.customer.name}}</span></td>
+                        <td> <span> {{i.duedate}}</span></td>
+                        <td> <a class="btn btn-success btn-sm" href="{% url 'updatePage' i.id %}"> Update </a></td>
+                        <td> <a class="btn btn-danger btn-sm" href="{% url 'deletePage' i.id %}"> Delete </a></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            <div>
+        </div>
+    </div>
+</body>
+</html>
